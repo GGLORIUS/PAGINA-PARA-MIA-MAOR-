@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Ti ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: Georgia, serif;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Slides */
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.activo {
+  opacity: 1;
+}
+
+/* Imagen */
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Frases */
+.frase {
+  text-align: center;
+  padding: 40px;
+  font-size: 28px;
+  line-height: 1.5;
+  max-width: 800px;
+}
+
+/* Indicador */
+.indicador {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SLIDES -->
+
+<div class="slide activo"><img src="img/foto1.jpg"></div>
+
+<div class="slide">
+  <div class="frase">
+    Desde que llegaste, todo tiene sentido ❤️
+  </div>
+</div>
+
+<div class="slide"><img src="img/foto2.jpg"></div>
+
+<div class="slide">
+  <div class="frase">
+    No eres casualidad, eres lo mejor que me pasó 💖
+  </div>
+</div>
+
+<div class="slide"><img src="img/foto3.jpg"></div>
+
+<div class="slide">
+  <div class="frase">
+    Contigo todo se siente diferente… mejor ✨
+  </div>
+</div>
+
+<div class="slide"><img src="img/foto4.jpg"></div>
+
+<div class="slide">
+  <div class="frase">
+    Tu sonrisa es mi lugar favorito 😍
+  </div>
+</div>
+
+<div class="slide"><img src="img/foto5.jpg"></div>
+
+<div class="slide">
+  <div class="frase">
+    Si te tengo a ti, lo tengo todo 🌍
+  </div>
+</div>
+
+<div class="slide"><img src="img/foto6.jpg"></div>
+
+<div class="slide">
+  <div class="frase">
+    No cambiaría nada de esto… ni un segundo 💫
+  </div>
+</div>
+
+<div class="slide"><img src="img/foto7.jpg"></div>
+
+<div class="slide">
+  <div class="frase">
+    Eres mi paz en medio de todo 💕
+  </div>
+</div>
+
+<div class="slide"><img src="img/foto8.jpg"></div>
+
+<div class="slide">
+  <div class="frase">
+    Y si me preguntan por qué sonrío… siempre diré: por ti ❤️
+  </div>
+</div>
+
+<div class="indicador">Haz clic para continuar 💖</div>
+
+<!-- MÚSICA -->
+<audio id="musica" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+let audioIniciado = false;
+
+function mostrarSlide(i) {
+  slides[index].classList.remove("activo");
+  index = (i + slides.length) % slides.length;
+  slides[index].classList.add("activo");
+}
+
+/* Click */
+document.body.addEventListener("click", () => {
+  if (!audioIniciado) {
+    document.getElementById("musica").play();
+    audioIniciado = true;
+  }
+  mostrarSlide(index + 1);
+});
+
+/* Teclado */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") mostrarSlide(index + 1);
+  if (e.key === "ArrowLeft") mostrarSlide(index - 1);
+});
+</script>
+
+</body>
+</html>
