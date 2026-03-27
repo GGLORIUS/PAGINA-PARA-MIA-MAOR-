@@ -1,164 +1,117 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para Ti ❤️</title> 
+<title>Para Ti ❤️</title>
 
 <style>
 body {
   margin: 0;
+  font-family: Arial, sans-serif;
   background: black;
   color: white;
-  font-family: Georgia, serif;
-  overflow: hidden;
-  cursor: pointer;
+  overflow-x: hidden;
 }
 
-/* Slides */
-.slide {
-  position: absolute;
+/* PORTADA */
+#portada {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  background: linear-gradient(black, pink);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-.activo {
-  opacity: 1;
-}
-
-/* Imagen */
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Frases */
-.frase {
+  color: white;
+  z-index: 1000;
   text-align: center;
+}
+
+#portada h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+#portada button {
+  padding: 15px 30px;
+  font-size: 20px;
+  border: none;
+  background: white;
+  color: black;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#portada button:hover {
+  transform: scale(1.1);
+}
+
+/* CONTENIDO */
+#contenido {
+  display: none;
   padding: 40px;
-  font-size: 28px;
-  line-height: 1.5;
-  max-width: 800px;
+  text-align: center;
 }
 
-/* Indicador */
-.indicador {
-  position: absolute;
-  bottom: 15px;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  opacity: 0.6;
+h2 {
+  font-size: 30px;
+}
+
+p {
+  font-size: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* ANIMACIÓN */
+.fade-in {
+  animation: aparecer 2s ease;
+}
+
+@keyframes aparecer {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- SLIDES -->
-
-<div class="slide activo"><img src="img/foto1.jpg"></div>
-
-<div class="slide">
-  <div class="frase">
-    Desde que llegaste, todo tiene sentido ❤️
-  </div>
+<!-- PORTADA -->
+<div id="portada">
+  <h1>Para Ti ❤️</h1>
+  <button onclick="empezar()">EMPEZAMOS</button>
 </div>
 
-<div class="slide"><img src="img/foto2.jpg"></div>
+<!-- AUDIO -->
+<audio id="miMusica" src="musica.mp3"></audio>
 
-<div class="slide">
-  <div class="frase">
-    No eres casualidad, eres lo mejor que me pasó 💖
-  </div>
+<!-- CONTENIDO -->
+<div id="contenido" class="fade-in">
+  <h2>Mi amor 💕</h2>
+  <p>
+    Desde que llegaste a mi vida todo es diferente...<br><br>
+    Esta página es solo una pequeña forma de demostrarte lo mucho que te amo 💖<br><br>
+    Gracias por existir ✨
+  </p>
 </div>
 
-<div class="slide"><img src="img/foto3.jpg"></div>
-
-<div class="slide">
-  <div class="frase">
-    Contigo todo se siente diferente… mejor ✨
-  </div>
-</div>
-
-<div class="slide"><img src="img/foto4.jpg"></div>
-
-<div class="slide">
-  <div class="frase">
-    Tu sonrisa es mi lugar favorito 😍
-  </div>
-</div>
-
-<div class="slide"><img src="img/foto5.jpg"></div>
-
-<div class="slide">
-  <div class="frase">
-    Si te tengo a ti, lo tengo todo 🌍
-  </div>
-</div>
-
-<div class="slide"><img src="img/foto6.jpg"></div>
-
-<div class="slide">
-  <div class="frase">
-    No cambiaría nada de esto… ni un segundo 💫
-  </div>
-</div>
-
-<div class="slide"><img src="img/foto7.jpg"></div>
-
-<div class="slide">
-  <div class="frase">
-    Eres mi paz en medio de todo 💕
-  </div>
-</div>
-
-<div class="slide"><img src="img/foto8.jpg"></div>
-
-<div class="slide">
-  <div class="frase">
-    Y si me preguntan por qué sonrío… siempre diré: por ti ❤️
-  </div>
-</div>
-
-<div class="indicador">Haz clic para continuar 💖</div>
-
-<!-- MÚSICA -->
-<audio id="musica" loop>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
-
+<!-- SCRIPT -->
 <script>
-let slides = document.querySelectorAll(".slide");
-let index = 0;
-let audioIniciado = false;
+function empezar() {
+  var musica = document.getElementById("miMusica");
+  musica.play();
 
-function mostrarSlide(i) {
-  slides[index].classList.remove("activo");
-  index = (i + slides.length) % slides.length;
-  slides[index].classList.add("activo");
+  document.getElementById("portada").style.display = "none";
+  document.getElementById("contenido").style.display = "block";
 }
-
-/* Click */
-document.body.addEventListener("click", () => {
-  if (!audioIniciado) {
-    document.getElementById("musica").play();
-    audioIniciado = true;
-  }
-  mostrarSlide(index + 1);
-});
-
-/* Teclado */
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") mostrarSlide(index + 1);
-  if (e.key === "ArrowLeft") mostrarSlide(index - 1);
-});
 </script>
 
 </body>
 </html>
+```
